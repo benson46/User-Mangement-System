@@ -1,0 +1,37 @@
+<%- include('../layouts/header') %>
+
+<!-- WELCOME SECTION -->
+<div class="container-fluid bg-info d-flex justify-content-center align-items-center">
+    <h1 class="text-center">WELCOME <%= user.name.toUpperCase() %></h1>
+</div>
+
+
+<div class="container">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>
+                <%= user.name.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ') %>
+            </td>
+            <td><%= user.mobile %></td>
+            <td><%= user.email %></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
+<!-- LOGOUT BUTTON -->
+<div class="d-flex justify-content-center mt-5">
+    <a class="btn btn-primary btn-lg" href="/logout" role="button">Logout</a>
+</div>
+
+<%- include('../layouts/footer') %>

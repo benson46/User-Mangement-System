@@ -1,0 +1,62 @@
+<%- include('../layouts/header') %>
+
+<h1 class="text-center">Dashboard</h1>
+
+<div class="container">
+    <h1 class="text-center">User Details</h1>
+
+    <div class="d-flex w-100 justify-content-center gap-1">
+        <form action="" method="post" class="d-flex" role="search">
+            <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-primary" type="submit">Search</button>
+        </form>
+        <div class="d-flex ">
+            <button class="btn btn-info"><a class="text-decoration-none" href="/admin/new-user">Add new User</a></button>
+        </div>
+    </div>
+   
+    <table class="table">
+        <thead>
+        
+              
+            
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col">Actions </th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if(users.length > 0) { %>
+              <% let num = 1; %> 
+              <% for(let i = 0; i < users.length; i++) { %>
+                  <tr>
+                      <td><%= num %></td> 
+                      <td><%= users[i].name %></td> 
+                      <td><%= users[i].mobile %></td>
+                      <td><%= users[i].email %></td> 
+                      <td><button class="btn btn-sm btn-info"><a class="text-decoration-none" href="/admin/edit-user?id=<%= users[i]._id %>">Edit</a></button></td>
+                      <td>
+                        <form action="/admin/delete-user" method="POST">
+                            <input type="hidden" name="id" value="<%= users[i]._id %>">
+                            <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+                        </form>
+                    </td>
+                  </tr>
+                  <% num++; %> 
+              <% } %>
+          <% } else { %>
+              <tr>
+                  <td colspan="5">User not found</td>
+              </tr>
+          <% } %>
+        </tbody>
+    </table>
+</div>
+
+<h4 class="text-center"><button class="btn btn-info"><a class="text-decoration-none" href="/admin/home">Go To Home</a></button></h4>
+
+<%- include('../layouts/footer') %>
